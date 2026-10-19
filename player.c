@@ -103,6 +103,7 @@ void updatePlayer(Player *player, float deltaTime)
     --player->path->size;
   }
 
-  player->faceRight = (px <= 0);
+  if (player->path->size > 0)
+    player->faceRight = player->path->cell[player->path->size-1]->col - player->x < 0;
   Update(player->animator, deltaTime, player->path->size > 0 ? 0 : 1);
 }
