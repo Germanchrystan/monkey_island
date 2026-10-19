@@ -7,8 +7,8 @@ typedef struct cell
 {
   int col;
   int row;
-  int G; // Distance from player
-  int H; // Distance from target
+  int G; // Distancia del player
+  int H; // Distancia del target
   int F; // G + H
   bool solid;
   struct cell *parent;
