@@ -10,6 +10,7 @@ typedef struct player
   float speed;
   CellList* path; // This can be expanded to hold the player's path
   Animator* animator;
+  bool faceRight;
 } Player;
 
 void initPlayer(Player *player, int x, int y);

@@ -7,14 +7,33 @@
 #define EPSILON 0.01f
 #define PLAYER_SPEED 5.0f
 
+static Frame idleFrames[] = {
+  {
+    .source = (Rectangle){0, 342, 32, 48},
+    .duration = 0.2f,
+  },
+};
+
+static Frame walkFrames[] = {
+  {.source = (Rectangle){0, 342, 32, 48}, .duration = 0.1f},
+  {.source = (Rectangle){32, 66, 32, 48}, .duration = 0.1f},
+  {.source = (Rectangle){64, 66, 28, 48}, .duration = 0.1f},
+  {.source = (Rectangle){96, 66, 28, 48}, .duration = 0.1f},
+  {.source = (Rectangle){128, 66, 28, 48}, .duration = 0.1f},
+  {.source = (Rectangle){150, 66, 28, 48}, .duration = 0.2f},
+};
+
 void initPlayer(Player *player, int x, int y)
 {
   player->x = (float)x;
   player->y = (float)y;
+  player->faceRight = true;
   player->status = 0; // Idle
   player->speed = PLAYER_SPEED; // Cells per second
   player->path = NULL;
   player->animator = newAnimator("assets/guy.png");
+  AddAnimation(player->animator, (Animation){.frames = walkFrames, .frameCount = 6});
+  AddAnimation(player->animator, (Animation){.frames = idleFrames, .frameCount = 1});
 }
 
 void drawPlayer(Player *player, int cellSize, int drawMode)
@@ -27,14 +46,18 @@ void drawPlayer(Player *player, int cellSize, int drawMode)
   }
   if (drawMode == 0)
   {
-    DrawTexturePro(
-      *player->animator->texture,
-      (Rectangle){0, 342, 32, 48},
+    Draw(player->animator,
       (Rectangle){player->x * cellSize - cellSize / 2, (player->y - 2) * cellSize, cellSize * 2, cellSize * 3},
-      (Vector2){0, 0},
-      0.0f,
-      WHITE
+      player->faceRight
     );
+    // DrawTexturePro(
+    //   *player->animator->texture,
+    //   (Rectangle){0, 342, 32, 48},
+    //   (Rectangle){player->x * cellSize - cellSize / 2, (player->y - 2) * cellSize, cellSize * 2, cellSize * 3},
+    //   (Vector2){0, 0},
+    //   0.0f,
+    //   WHITE
+    // );
   }
 }
 
@@ -79,4 +102,7 @@ void updatePlayer(Player *player, float deltaTime)
     }
     --player->path->size;
   }
+
+  player->faceRight = (px <= 0);
+  Update(player->animator, deltaTime, player->path->size > 0 ? 0 : 1);
 }

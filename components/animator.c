@@ -12,7 +12,7 @@ Animator *newAnimator(const char *texturePath)
   }
   animator->animations = NULL;
   animator->animationCount = 0;
-  animator->currentAnimation = -1;
+  animator->currentAnimation = 0;
   animator->currentFrame = 0;
   animator->timer = 0.0f;
   return animator;
