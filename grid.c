@@ -135,14 +135,12 @@ CellList *search(Grid *grid, Player *player, GridPosition *target)
   resetSearchData(grid);
   Cell *startCell = &grid->cell[(int)(player->y)][(int)(player->x)];
 
-  startCell->G = 999; // COLUMNS * ROWS;
   startCell->H = abs(target->col - (int)(player->x)) + abs(target->row - (int)(player->y));
   startCell->F = startCell->G + startCell->H;
 
   CellList *openList = CreateCellList(10, startCell);
   CellList *closedList = CreateCellList(10, NULL);
   startCell->parent = NULL;
-  AddCellToList(openList, startCell);
   updateCellPathValues(grid, startCell, target);
   while (openList->size > 0)
   {
@@ -187,7 +185,7 @@ CellList *search(Grid *grid, Player *player, GridPosition *target)
     }
   }
   sortListByH(closedList);
-  CellList *path = reconstructPath(closedList->cell[0]);
+  CellList *path = reconstructPath(closedList->cell[0]); // Si no se pudo llegar a destino, se devuelve la ruta que màs se acercó
   FreeCellList(openList);
   FreeCellList(closedList);
   return path;
