@@ -1,0 +1,31 @@
+<dialogTree>
+  <node id="start">
+    <text>Hola! este es el trabajo de Laboratorio I, para la INSPT UTN.</text>
+    <option goto="ask_key">Quiero ser un pirata</option>
+    <option goto="end">Nos vemos</option>
+  </node>
+  <node id="ask_key">
+    <text>Toma una llave!</text>
+    <events length="2">
+      <event type="1">
+        <payload type="1">
+          <itemId>2</itemId>
+        </payload>
+      </event>
+      <event type="5">
+        <payload type="5">
+          <dialogId>1</dialogId>
+          <startNode>start-2</startNode>
+        </payload>
+      </event>
+    </events>
+    <option goto="end">Gracias!</option>
+  </node>
+  <node id="end">
+    <text>Adiós.</text>
+  </node>
+  <node id="start-2">
+    <text>Hola, futuro pirata! ¿Qué necesitas?</text>
+    <option goto="end">Solo pasando.</option>
+  </node>
+</dialogTree>

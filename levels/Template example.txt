@@ -1,0 +1,14 @@
+v1
+PNCL
+8 (ScreenQuantity)
+===== Screen ========
+64 64 8 (grid rows cols cellSize)
+8 (Wall data Quantity)
+01 (x y)
+...
+2 (Spawn Point Quantity)
+12 9 (x y)
+0 2 (x y)
+...
+2 (Door Quantity)
+1 0 1 (screen Index - spawn index - open)
