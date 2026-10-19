@@ -186,16 +186,16 @@ void loadLevel(Level *level, const char *filename)
     fscanf(file, "%d %d %d %d %d", &textureId, &backgroundWidth, &backgroundHeight, &foregroundWidth, &foregroundHeight);
     screenTextures.backgroundSize = (Vector2){backgroundWidth, backgroundHeight};
     screenTextures.foregroundSize = (Vector2){foregroundWidth, foregroundHeight};
-    const char bkName[20];
-    const char fgName[20];
-    sprintf(bkName, "assets/bg_%d.png", textureId);
-    sprintf(fgName, "assets/fg_%d.png", textureId);
+    char bkName[32];
+    char fgName[32];
+    snprintf(bkName, sizeof(bkName), "assets/bg_%d.png", textureId);
+    snprintf(fgName, sizeof(fgName), "assets/fg_%d.png", textureId);
     screenTextures.background = malloc(sizeof(*screenTextures.background));
     screenTextures.foreground = malloc(sizeof(*screenTextures.foreground));
     if (screenTextures.background != NULL)
-      *screenTextures.background = LoadTexture(bkName);
+      *screenTextures.background = FileExists(bkName) ? LoadTexture(bkName) : (Texture2D){0};
     if (screenTextures.foreground != NULL)
-      *screenTextures.foreground = LoadTexture(fgName);
+      *screenTextures.foreground = FileExists(fgName) ? LoadTexture(fgName) : (Texture2D){0};
     screen->screenTextures = screenTextures;
     screen->grid = grid;
     int wallCount, spawnCount, doorCount, eventObjCount;
