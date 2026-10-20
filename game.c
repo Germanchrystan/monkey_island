@@ -103,6 +103,7 @@ void updateGame(Game *game, float dt)
       break; // SAFEGUARD: Wait for transition to complete before changing state
     game->ui.blackScreen.transparency = 0;
     changeGameState(game, PLAYING);
+    game->level.player.animator->currentAnimation = 0;
     break;
   }
   case TALK_TREE:
@@ -163,7 +164,7 @@ void changeGameState(Game *game, GameState newGameState)
 void notifyItemPickup(Game *game, const char *itemName)
 {
   char text[TEXT_BOX_MAX_TEXT_LENGTH];
-  snprintf(text, sizeof(text), "You picked up: %s", itemName);
+  snprintf(text, sizeof(text), "Recibiste: %s", itemName);
   addTextToTextBox(&game->ui.textBoxUI, text);
   changeGameState(game, UI_INTERRUPTION);
 }
