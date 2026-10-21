@@ -50,7 +50,7 @@ int main(int args, char *argv[])
   }
   
   SetConfigFlags(FLAG_WINDOW_UNDECORATED);
-  InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "Pathfinder");
+  InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "Monkey Island");
   SetWindowPosition(0, 0);
   SetWindowSize(GetMonitorWidth(0), GetMonitorHeight(0));
   enableMacOSKioskPresentation(); // MACOS
