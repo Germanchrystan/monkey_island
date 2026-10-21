@@ -31,12 +31,6 @@ typedef struct EventPayloadItemPickup
   int itemIndex;
 } EventPayloadItemPickup;
 
-typedef struct EventPayloadDialogStart {
-  char startNodeId[32];
-  int npcId;
-  int dialogId;
-} EventPayloadDialogStart;
-
 typedef struct EventPayloadDoorInteraction {
   int sourceScreenIndex;
   int sourceDoorId;
@@ -61,10 +55,9 @@ typedef struct EventPayloadSetDialogRuntimeStart {
 
 typedef union EventPayload {
   EventPayloadItemPickup itemPickup;
-  EventPayloadDialogStart dialogStart;
   EventPayloadDoorInteraction doorInteraction;
   EventPayloadKinematicMovement kinematicMovement;
-  EventPayloadSetDialogRuntimeStart dialogRuntimeStart;
+  EventPayloadSetDialogRuntimeStart dialogRuntimeStart; // Desde donde se dispara el diálogo
   EventPayloadDialogTrigger dialogTrigger;
 } EventPayload;
 

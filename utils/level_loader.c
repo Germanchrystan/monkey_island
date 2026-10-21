@@ -11,9 +11,8 @@ static void loadEventDataFromType(FILE *file, int eventType, EventData *eventDat
   switch (eventType)
   {
   case EVENT_TYPE_ITEM_PICKUP:
-    int dummySourceScreenIndex, dummySourceEventObjectIndex; // TODO: DELETE DUMMY DATA
     eventData->payloadType = EVENT_PAYLOAD_ITEM_PICKUP;
-    fscanf(file, "%d %d %d", &dummySourceScreenIndex, &dummySourceEventObjectIndex, &eventData->payload.itemPickup.itemIndex);
+    fscanf(file, "%d", &eventData->payload.itemPickup.itemIndex);
     break;
   case EVENT_TYPE_DOOR_INTERACTION:
     eventData->payloadType = EVENT_PAYLOAD_DOOR_INTERACTION;
@@ -56,7 +55,7 @@ static void saveEventDataToType(FILE *file, EventData *eventData)
   {
   case EVENT_TYPE_ITEM_PICKUP:
     // TODO: DELETE DUMMY DATA
-    fprintf(file, "%d %d %d\n", 0, 0, eventData->payload.itemPickup.itemIndex);
+    fprintf(file, "%d\n", eventData->payload.itemPickup.itemIndex);
     break;
   case EVENT_TYPE_DOOR_INTERACTION:
     fprintf(file, "%d %d %d %d %d %d\n",
