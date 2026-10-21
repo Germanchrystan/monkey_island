@@ -1,6 +1,6 @@
 <dialogTree>
   <node id="start">
-    <text>Hola! este es el trabajo de Laboratorio I, para la INSPT UTN.</text>
+    <text>Hola! este es el trabajo de Programación I, para la INSPT UTN.</text>
     <option goto="ask_key">Quiero ser un pirata</option>
     <option goto="end">Nos vemos</option>
   </node>
