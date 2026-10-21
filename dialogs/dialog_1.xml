@@ -1,11 +1,16 @@
 <dialogTree>
   <node id="start">
-    <text>Hola! este es el trabajo de Programación I, para la INSPT UTN.</text>
+    <text>Hola! este es un clon de Monkey Island.</text>
+    <option goto="ask_owner">Quiero saber quién lo hizo</option>
     <option goto="ask_key">Quiero ser un pirata</option>
     <option goto="end">Nos vemos</option>
   </node>
+  <node id="ask_owner">
+    <text>El juego lo hizo Germán Chrystan, que cursa en la UTN INSPT.</text>
+    <option goto="start">Gracias por la información</option>
+  </node>
   <node id="ask_key">
-    <text>Toma una llave!</text>
+    <text>Toma la contraseña!</text>
     <events length="2">
       <event type="1">
         <payload type="1">
