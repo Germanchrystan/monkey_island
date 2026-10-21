@@ -74,14 +74,12 @@ void updateGame(Game *game, float dt)
       {
         changeGameState(game, FADE_OUT);
       }
-      else
-      {
+      else {
         if (game->ui.talkTreeUI.active)
         {
           changeGameState(game, TALK_TREE);
         }
-        else
-        {
+        else {
           changeGameState(game, PLAYING);
         }
       }

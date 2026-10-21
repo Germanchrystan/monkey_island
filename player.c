@@ -50,14 +50,6 @@ void drawPlayer(Player *player, int cellSize, int drawMode)
       (Rectangle){player->x * cellSize - cellSize / 2, (player->y - 2) * cellSize, cellSize * 2, cellSize * 3},
       player->faceRight
     );
-    // DrawTexturePro(
-    //   *player->animator->texture,
-    //   (Rectangle){0, 342, 32, 48},
-    //   (Rectangle){player->x * cellSize - cellSize / 2, (player->y - 2) * cellSize, cellSize * 2, cellSize * 3},
-    //   (Vector2){0, 0},
-    //   0.0f,
-    //   WHITE
-    // );
   }
 }
 
