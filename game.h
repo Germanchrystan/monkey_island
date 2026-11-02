@@ -46,7 +46,7 @@ typedef struct PendingTransition
 typedef struct Game 
 {
   GameState state;
-  int levelIndex; // Expand on this when we have multiple levels
+  int levelIndex;
   Level level;
   Inventory inventory;
   EventQueue eventQueue;
