@@ -5,7 +5,7 @@
 static char* registry[ITEM_DEFINITION_COUNT] =
     {
         [ITEM_DEFINITION_RUSTED_KEY] = "Rusted Key",
-        [ITEM_DEFINITION_TRAVELER_KEY] = "Santo y Seña",
+        [ITEM_DEFINITION_PASSWORD] = "Santo y Seña",
 };
 
 void initInventory(Inventory *inventory) 

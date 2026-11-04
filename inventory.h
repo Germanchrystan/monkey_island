@@ -19,7 +19,7 @@ typedef struct {
 typedef enum ItemDefinitionId {
   ITEM_DEFINITION_NONE = 0,
   ITEM_DEFINITION_RUSTED_KEY = 1,
-  ITEM_DEFINITION_TRAVELER_KEY = 2,
+  ITEM_DEFINITION_PASSWORD = 2,
   ITEM_DEFINITION_COUNT
 } ItemDefinitionId;
 
