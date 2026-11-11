@@ -124,17 +124,25 @@ void drawTalkTreeUI(Game *game)
   
   DrawRectangle(talkTreeUI->rect.x, talkTreeUI->rect.y, talkTreeUI->rect.width, talkTreeUI->rect.height, (Color){0, 0, 0, 100});
   
-  Vector2 textSize = MeasureTextEx(GetFontDefault(), talkTree->currentNode->text, 20.0f, 2.0f);
+  const int dialogFontSize = 30;
+  Vector2 textSize = MeasureTextEx(GetFontDefault(), talkTree->currentNode->text, (float)dialogFontSize, 2.0f);
   if (talkTree->currentNode != NULL)
   {
-    DrawText(talkTree->currentNode->text, (GetScreenWidth() / 2) - (int)(textSize.x / 2), (GetScreenHeight() / 2) - (int)(textSize.y / 2), 20, WHITE);
+    
+    DrawText(talkTree->currentNode->text, (GetScreenWidth() / 2) - (int)(textSize.x / 2), (GetScreenHeight() / 2) - (int)(textSize.y / 2), dialogFontSize, WHITE);
   }
 
   int OptionYStart = (GetScreenHeight() / 2) - (int)(textSize.y / 2) + textSize.y + 20;
-  int OptionXStart = (GetScreenWidth() / 2) - 100; // Center the buttons horizontally, assuming button width is 200
+  const int optionFontSize = 36;
+  const int optionButtonWidth = 500;
+  int OptionXStart = (GetScreenWidth() / 2) - (optionButtonWidth / 2);
   for (DialogOption *option = talkTree->currentNode->options; option != NULL; option = option->next)
   {
-    if (GuiButton((Rectangle){OptionXStart, OptionYStart, 200, 30}, option->text))
+    Rectangle optionButton = {OptionXStart, OptionYStart, optionButtonWidth, 60};
+    int optionTextWidth = MeasureText(option->text, optionFontSize);
+    DrawText(option->text, (GetScreenWidth() / 2) - (optionTextWidth / 2), OptionYStart + 12, optionFontSize, GREEN);
+
+    if (GuiButton(optionButton, ""))
     {
       if (option->goto_id == NULL)
       {
@@ -145,7 +153,7 @@ void drawTalkTreeUI(Game *game)
         setTalkTreeCurrentNode(game, option->goto_id);
       }
     }
-    OptionYStart += 40; // Adjust the spacing between buttons
+    OptionYStart += 65; // Adjust the spacing between buttons
   }
 }
 
@@ -162,7 +170,10 @@ static void initTalkTreeUI(TalkTreeUI *talkTreeUI)
   talkTreeUI->rect = (Rectangle){0, 0, GetScreenWidth(), GetScreenHeight()};
 
   GuiSetStyle(BUTTON, BORDER_WIDTH, 0);
-  GuiSetStyle(BUTTON, BASE_COLOR_NORMAL, ColorToInt(MAROON));
+  GuiSetStyle(BUTTON, BASE_COLOR_NORMAL, ColorToInt(BLANK));
+  GuiSetStyle(BUTTON, BASE_COLOR_FOCUSED, ColorToInt(BLANK));
+  GuiSetStyle(BUTTON, BASE_COLOR_PRESSED, ColorToInt(BLANK));
+  GuiSetStyle(BUTTON, BASE_COLOR_DISABLED, ColorToInt(BLANK));
   GuiSetStyle(BUTTON, TEXT_COLOR_NORMAL, ColorToInt(WHITE));
   GuiSetStyle(BUTTON, TEXT_COLOR_FOCUSED, ColorToInt(WHITE));
   GuiSetStyle(BUTTON, TEXT_COLOR_PRESSED, ColorToInt(WHITE));

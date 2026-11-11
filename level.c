@@ -50,6 +50,11 @@ void updateLevel(Game *game, Level *level, float dt)
     lastTargetPos = newTargetPos;
     setPlayerPath(&level->player, search(grid, &level->player, &lastTargetPos));
   }
+  for(int i = 0; i < level->screens[level->currentScreen].npcQ; i++)
+  {
+    Npc *npc = &level->screens[level->currentScreen].npcs[i];
+    updateNpc(npc, dt);
+  }
   updatePlayer(&level->player, dt);
   checkForPendingEventObjectTrigger(game, level);
 }
@@ -113,6 +118,10 @@ void drawLevel(Level *level, int drawMode)
   drawGrid(&level->screens[level->currentScreen].grid);
   drawEventObjects(&level->screens[level->currentScreen]);
   DrawTexture(*level->screens[level->currentScreen].screenTextures.background, 0, 0, (Color){255, 255, 255, (unsigned char)(255 * transparency)});
+  for(int i = 0; i < level->screens[level->currentScreen].npcQ; i++)
+  {
+    drawNpc(&level->screens[level->currentScreen].npcs[i], level->screens[level->currentScreen].grid.cellSize, drawMode);
+  }
   drawPlayer(&level->player, level->screens[level->currentScreen].grid.cellSize, drawMode);
   DrawTexture(*level->screens[level->currentScreen].screenTextures.foreground, 0, 0, (Color){255, 255, 255, (unsigned char)(255 * transparency)});
 }

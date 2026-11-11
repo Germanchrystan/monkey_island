@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include "grid.h"
 #include "event_registry.h"
+#include "npc.h"
 
 typedef struct Game Game;
 
@@ -54,9 +55,11 @@ typedef struct
 {
   int spawnPointQ;
   int eventObjQ;
+  int npcQ;
   Grid grid;
   SpawnPoint *spawnPoints; // TODO: SpawnPoint should be an struct with GridPosition and facing direction
   EventObject *eventObjects;
+  Npc *npcs;
   ScreenTextures screenTextures;
 } Screen;
 

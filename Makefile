@@ -3,7 +3,7 @@ CXX = clang++
 CFLAGS = # -Wall -Wextra -Werror -MMD -MP
 LDFLAGS = -lraylib
 
-COMPONENT_DIR = Components
+COMPONENT_DIR = components
 
 CSOURCES = $(wildcard *.c)
 MSOURCES = $(wildcard *.m)

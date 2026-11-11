@@ -4,6 +4,7 @@
 #include "../grid.h"
 #include "../game.h"
 #include "../event_registry.h"
+#include "../npc.h"
 
 static void loadEventDataFromType(FILE *file, int eventType, EventData *eventData)
 {
@@ -266,6 +267,45 @@ void loadLevel(Level *level, const char *filename)
         loadEventDataFromType(file, eventType, eventObject.eventDataList.eventData + k);
       }
       screen->eventObjects[j] = eventObject;
+    }
+    // Screen NPC's
+    int npcCount;
+    fscanf(file, "%d", &npcCount);
+    screen->npcQ = npcCount;
+    screen->npcs = (Npc *)malloc(npcCount * sizeof(Npc));
+    if (screen->npcs == NULL)
+    {
+      fprintf(stderr, "Failed to allocate memory for NPCs\n");
+      fclose(file);
+      freeLevel(level);
+      level = NULL;
+      return;
+    }
+    for (int j = 0; j < npcCount; ++j)
+    {
+      Npc npc;
+      int textureId, animationCount;
+      fscanf(file, "%d %d %d %d %d %d", &npc.position.col, &npc.position.row, &textureId, &npc.widthInCells, &npc.heightInCells, &animationCount);
+      npc.animator = newAnimator(textureRegistry[textureId]);
+
+      for (int k = 0; k < animationCount; ++k)
+      {
+        Animation animation;
+        fscanf(file, "%d", &animation.frameCount);
+        animation.frames = (Frame *)malloc(animation.frameCount * sizeof(Frame));
+        for (int f = 0; f < animation.frameCount; ++f)
+        {
+          fscanf(file, "%f %f %f %f %f", 
+            &animation.frames[f].source.x,
+            &animation.frames[f].source.y,
+            &animation.frames[f].source.width,
+            &animation.frames[f].source.height,
+            &animation.frames[f].duration
+          );
+        }
+        AddAnimation(npc.animator, animation);
+      }
+      screen->npcs[j] = npc;
     }
   }
   //
