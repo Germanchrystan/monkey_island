@@ -7,8 +7,33 @@
   <node id="ask_grog">
     <text>Querosene, Endulzantes artificiales, Ácido sulfúrico, Colorante rojo n.º 2</text>
     <option goto="end">Suena delicioso.</option>
+    <option goto="ask_key">Quiero la llave</option>
+  </node>
+  <node id="ask_key">
+    <text>Toma!</text>
+    <events length="2">
+      <event type="1">
+        <payload type="1">
+          <itemId>1</itemId>
+        </payload>
+      </event>
+      <event type="5">
+        <payload type="5">
+          <dialogId>2</dialogId>
+          <startNode>start-2</startNode>
+        </payload>
+      </event>
+    </events>
+    <option goto="end">Gracias!</option>
+  </node>
+  <node id="end">
+    <text>Adiós.</text>
   </node>
   <node id="end">
     <text>Ya vete.</text>
+  </node>
+   <node id="start-2">
+    <text>Ya te dimos la llave</text>
+    <option goto="end">Solo pasando.</option>
   </node>
 </dialogTree>
