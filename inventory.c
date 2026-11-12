@@ -4,7 +4,7 @@
 
 static char* registry[ITEM_DEFINITION_COUNT] =
     {
-        [ITEM_DEFINITION_RUSTED_KEY] = "Rusted Key",
+        [ITEM_DEFINITION_RUSTED_KEY] = "Llave de la cocina",
         [ITEM_DEFINITION_PASSWORD] = "Santo y Seña",
 };
 
