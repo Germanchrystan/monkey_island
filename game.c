@@ -170,7 +170,7 @@ void notifyItemPickup(Game *game, const char *itemName)
 void notifyDoorLocked(Game *game)
 {
   char text[TEXT_BOX_MAX_TEXT_LENGTH];
-  snprintf(text, sizeof(text), "Door is locked\n");
+  snprintf(text, sizeof(text), "Puerta trabada\n");
   addTextToTextBox(&game->ui.textBoxUI, text);
   changeGameState(game, UI_INTERRUPTION);
 }
@@ -178,7 +178,7 @@ void notifyDoorLocked(Game *game)
 void notifyDoorUnlocked(Game *game, const char *itemName)
 {
   char text[TEXT_BOX_MAX_TEXT_LENGTH];
-  snprintf(text, sizeof(text), "Door unlocked with %s\n", itemName);
+  snprintf(text, sizeof(text), "Puerta abierta con %s\n", itemName);
   addTextToTextBox(&game->ui.textBoxUI, text);
   changeGameState(game, UI_INTERRUPTION);
 }
