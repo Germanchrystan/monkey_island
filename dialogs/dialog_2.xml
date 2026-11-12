@@ -1,0 +1,14 @@
+
+<dialogTree>
+  <node id="start">
+    <text>¡Estamos tomando Grog! ¿Qué quieres?</text>
+    <option goto="ask_grog">¿Qué tiene el grog?</option>
+  </node>
+  <node id="ask_grog">
+    <text>Querosene, Endulzantes artificiales, Ácido sulfúrico, Colorante rojo n.º 2</text>
+    <option goto="end">Suena delicioso.</option>
+  </node>
+  <node id="end">
+    <text>Ya vete.</text>
+  </node>
+</dialogTree>
